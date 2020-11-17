@@ -1,4 +1,5 @@
 from stock_symbols.symbols import Sp500Parser
+from pprint import pprint
 
 if __name__ == '__main__':
 
@@ -6,4 +7,4 @@ if __name__ == '__main__':
 
     sp500 = Sp500Parser().parse().get_dict()
 
-    print(sp500)
+    pprint(sp500)

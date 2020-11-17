@@ -21,7 +21,7 @@ class Sp500Parser(SymbolParser):
         self.dict = {}
         for symbol, name in zip(symbols, names):
             _symbol = symbol.text
-            _name = remove_common_words_from_corp_name(name)
+            _name = remove_common_words_from_corp_name(name.text)
             self.dict[_symbol] = _name
 
         print(f'==> get {len(self.dict)} symbols')
