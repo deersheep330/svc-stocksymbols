@@ -1,4 +1,4 @@
-from stock_symbols.symbols import Sp500Parser, DowJonesParser, NasdaqParser, SoxParser
+from stock_symbols.symbols import Sp500Parser, DowJonesParser, NasdaqParser, SoxParser, TWSEParser
 from pprint import pprint
 
 if __name__ == '__main__':
@@ -20,3 +20,7 @@ if __name__ == '__main__':
     sox = SoxParser().parse().get_dict()
 
     pprint(sox)
+
+    twse = TWSEParser().parse().get_dict()
+
+    pprint(twse)
