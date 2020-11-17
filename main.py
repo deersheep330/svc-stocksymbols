@@ -1,4 +1,4 @@
-from stock_symbols.symbols import Sp500Parser
+from stock_symbols.symbols import Sp500Parser, DowJonesParser, NasdaqParser, SoxParser
 from pprint import pprint
 
 if __name__ == '__main__':
@@ -8,3 +8,15 @@ if __name__ == '__main__':
     sp500 = Sp500Parser().parse().get_dict()
 
     pprint(sp500)
+
+    dowjones = DowJonesParser().parse().get_dict()
+
+    pprint(dowjones)
+
+    nasdaq = NasdaqParser().parse().get_dict()
+
+    pprint(nasdaq)
+
+    sox = SoxParser().parse().get_dict()
+
+    pprint(sox)

@@ -7,8 +7,9 @@ class Sp500Parser(SymbolParser):
 
     def __init__(self):
         self.url = 'https://www.cnyes.com/usastock/hotprice.aspx?page=hot&kind=sp500'
+        self.symbol_xpath = "//table[contains(@id, 'stock')]//tr/td[2]/a"
+        self.name_xpath = "//table[contains(@id, 'stock')]//tr/td[3]/a"
         super(Sp500Parser, self).__init__()
-        print(f'==> s&p 500 parser init')
 
     def parse(self):
         print(f'==> parse page: {self.url}')
@@ -16,8 +17,8 @@ class Sp500Parser(SymbolParser):
         content = resp.text
         tree = etree.HTML(content)
 
-        symbols = tree.xpath("//table[contains(@id, 'stock')]//tr/td[2]/a")
-        names = tree.xpath("//table[contains(@id, 'stock')]//tr/td[3]/a")
+        symbols = tree.xpath(self.symbol_xpath)
+        names = tree.xpath(self.name_xpath)
         self.dict = {}
         for symbol, name in zip(symbols, names):
             _symbol = symbol.text
