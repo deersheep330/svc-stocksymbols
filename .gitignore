@@ -12,3 +12,7 @@
 Lib
 Scripts
 pyvenv.cfg
+
+# python
+__pycache__
+*.pyc
