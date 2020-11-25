@@ -6,16 +6,23 @@ from sqlalchemy.dialects import postgresql
 from ..db import Base
 
 def create_engine(user, password, host, port, database):
-    engine = __create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}')
-    return engine
+    print('==> create_engine()')
+    try:
+        return create_engine.engine
+    except AttributeError:
+        print('create new engine')
+        create_engine.engine = __create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}')
+        return create_engine.engine
 
 def create_all_tables_from_orm(engine):
     Base.metadata.create_all(engine)
 
 def start_session(engine):
+    print('==> start_session()')
     try:
         return start_session.session_maker()
     except AttributeError:
+        print('create new session maker')
         start_session.session_maker = sessionmaker()
         start_session.session_maker.configure(bind=engine)
         return start_session.session_maker()
