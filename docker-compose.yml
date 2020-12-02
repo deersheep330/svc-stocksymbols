@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  cron:
+    build:
+      context: .
+      dockerfile: Dockerfile-cron
+    volumes:
+      - ./stocksymbols:/home/app/stocksymbols
+      - ./cron.py:/home/app/cron.py
+
+networks:
+  default:
+    external:
+      name: svc-overlay-network

@@ -15,8 +15,8 @@ RUN apt-get -y install vim cron
 
 WORKDIR /home/app
 
-COPY stocksymbols ./stocksymbols
-COPY cron.py .
+#COPY stocksymbols ./stocksymbols
+#COPY cron.py .
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt

@@ -24,7 +24,7 @@ class SymbolParser(ABC):
             for key, value in self.dict.items():
                 rows.append([key, value])
 
-            engine = create_engine('postgres', 'admin', 'localhost', '5432', 'postgres')
+            engine = create_engine('postgres', 'admin', 'db', '5432', 'postgres')
             session = start_session(engine)
 
             upsert(session, Stock, rows)
