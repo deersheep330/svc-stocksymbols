@@ -9,6 +9,7 @@ class Sp500Parser(SymbolParser):
         self.url = 'https://www.cnyes.com/usastock/hotprice.aspx?page=hot&kind=sp500'
         self.symbol_xpath = "//table[contains(@id, 'stock')]//tr/td[2]/a"
         self.name_xpath = "//table[contains(@id, 'stock')]//tr/td[3]/a"
+        self.filename = 'sp500.txt'
         super(Sp500Parser, self).__init__()
 
     def parse(self):

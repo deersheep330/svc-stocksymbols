@@ -5,6 +5,7 @@ from ..utils import remove_non_han_from_corp_name
 class TWSEParser(SymbolParser):
 
     def __init__(self):
+        self.filename = 'twse.txt'
         super(TWSEParser, self).__init__()
         update_codes()
 
