@@ -13,7 +13,7 @@ docker run -it cron /bin/bash
 docker-compose up --build
 
 
-docker-compose build
+docker-compose build --no-cache
 docker-compose push
 docker stack deploy -c docker-compose.yml symbols
 

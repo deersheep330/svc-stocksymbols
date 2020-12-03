@@ -18,7 +18,7 @@ services:
       - ./stocksymbols:/home/app/stocksymbols
       - ./main.py:/home/app/main.py
     ports:
-      - 8000:8000
+      - 7777:7777
 
 networks:
   default:
