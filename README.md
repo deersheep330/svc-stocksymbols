@@ -17,4 +17,4 @@ docker-compose build --no-cache
 docker-compose push
 docker stack deploy -c docker-compose.yml symbols
 
-docker service logs symbols_cron
+docker service logs symbols_api --follow
