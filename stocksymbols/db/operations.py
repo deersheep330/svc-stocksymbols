@@ -15,7 +15,7 @@ def create_engine(adapter, user, password, host, port, database):
         return create_engine.engine
     except AttributeError:
         print('create new engine')
-        create_engine.engine = __create_engine(f'{adapter}://{user}:{password}@{host}:{port}/{database}')
+        create_engine.engine = __create_engine(f'{adapter}://{user}:{password}@{host}:{port}/{database}', pool_recycle=3600*7)
         return create_engine.engine
 
 def create_all_tables_from_orm(engine):

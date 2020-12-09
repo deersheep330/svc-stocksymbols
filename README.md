@@ -10,6 +10,8 @@ docker build -t cron .
 docker run -it cron
 docker run -it cron /bin/bash
 
+docker-compose up -d service_name
+
 docker-compose up --build
 
 
