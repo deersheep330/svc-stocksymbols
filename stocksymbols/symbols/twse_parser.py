@@ -1,5 +1,5 @@
 from .symbol_parser import SymbolParser
-from twstock import twse, __update_codes as update_codes
+from twstock import twse, tpex, __update_codes as update_codes
 from ..utils import remove_non_han_from_corp_name
 
 class TWSEParser(SymbolParser):
@@ -25,7 +25,10 @@ class TWSEParser(SymbolParser):
 
     def parse(self):
         self.dict = {}
-        for item in twse.items():
+        temp = {}
+        temp.update(twse)
+        temp.update(tpex)
+        for item in temp.items():
 
             if self.__contains_special_words_in_symbol(item[1].code) or self.__contains_special_words_in_name(item[1].name):
                 continue

@@ -6,8 +6,6 @@ from sqlalchemy.dialects import postgresql, mysql
 
 from ..db import Base
 
-
-
 def create_engine(adapter, user, password, host, port, database):
     create_engine.adapter = adapter
     print(f'==> create_engine for {create_engine.adapter}')
