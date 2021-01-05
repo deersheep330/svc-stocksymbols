@@ -5,20 +5,11 @@ services:
     image: 127.0.0.1:5000/symbols_cron
     build:
       context: .
-      dockerfile: Dockerfile-cron
+      dockerfile: Dockerfile
     volumes:
-      - ./stocksymbols:/home/app/stocksymbols
+      - ./symbols:/home/app/symbols
+      - ./api:/home/app/api
       - ./cron.py:/home/app/cron.py
-  api:
-    image: 127.0.0.1:5000/symbols_api
-    build:
-      context: .
-      dockerfile: Dockerfile-api
-    volumes:
-      - ./stocksymbols:/home/app/stocksymbols
-      - ./main.py:/home/app/main.py
-    ports:
-      - 7777:7777
 
 networks:
   default:

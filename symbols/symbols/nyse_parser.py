@@ -1,6 +1,5 @@
 from .symbol_parser import SymbolParser
 import requests
-from lxml import etree
 from ..utils import remove_common_words_from_corp_name
 
 class NYSEParser(SymbolParser):

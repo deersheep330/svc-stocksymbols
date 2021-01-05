@@ -1,9 +1,11 @@
 import json
 from abc import ABC
 import os
+import grpc
 
-from ..db import create_engine, start_session, upsert
-from ..models import Stock
+from symbols.utils import get_grpc_hostname
+from api.protos import database_pb2_grpc
+from api.protos.database_pb2 import Stock
 
 class SymbolParser(ABC):
 
@@ -24,7 +26,7 @@ class SymbolParser(ABC):
 
             print(f'==> dump to file')
 
-            filename = './stocksymbols/dump/' + self.filename
+            filename = './symbols/dump/' + self.filename
             os.makedirs(os.path.dirname(filename), exist_ok=True)
 
             with open(filename, 'w+', encoding='utf-8') as f:
@@ -37,20 +39,15 @@ class SymbolParser(ABC):
         if self.dict is None or len(self.dict) == 0:
             pass
         else:
-
             print(f'==> update db')
-
-            rows = []
-            for key, value in self.dict.items():
-                rows.append([key, value])
-
-            engine = create_engine('mysql+pymysql', 'root', 'admin', 'db', '3306', 'mydb')
-            #engine = create_engine('postgresql', 'postgres', 'admin', 'db', '5432', 'postgres')
-            session = start_session(engine)
-
-            upsert(session, Stock, rows)
-
-            session.commit()
-            session.close()
+            try:
+                channel = grpc.insecure_channel(f'{get_grpc_hostname()}:6565')
+                stub = database_pb2_grpc.DatabaseStub(channel)
+                rowcount = stub.upsert_stocks((Stock(symbol=key, name=value) for key, value in self.dict.items()))
+                print(rowcount)
+            except grpc.RpcError as e:
+                status_code = e.code()
+                print(e.details())
+                print(status_code.name, status_code.value)
 
         return self

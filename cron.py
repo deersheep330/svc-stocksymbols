@@ -1,4 +1,4 @@
-from stocksymbols.symbols import Sp500Parser, DowJonesParser, NasdaqParser, SoxParser, TWSEParser, NYSEParser
+from symbols.symbols import Sp500Parser, DowJonesParser, NasdaqParser, SoxParser, TWSEParser, NYSEParser
 from pprint import pprint
 
 if __name__ == '__main__':
